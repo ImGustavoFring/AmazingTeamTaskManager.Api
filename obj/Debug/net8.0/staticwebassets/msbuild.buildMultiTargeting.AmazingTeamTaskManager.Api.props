@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\AmazingTeamTaskManager.Api.props" />
+</Project>
