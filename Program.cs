@@ -1,7 +1,6 @@
 using AmazingTeamTaskManager.Core.Contexts;
 using AmazingTeamTaskManager.Core.Infrastructure;
 using AmazingTeamTaskManager.Core.Repositories.UserDbRepositories;
-using AmazingTeamTaskManager.Core.Repositories.TaskManagerRepositories;
 using AmazingTeamTaskManager.Core.Services;
 using AmazingTeamTaskManager.Core.Services.UserServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -80,21 +79,12 @@ namespace AmazingTeamTaskManager.Api
                 };
             });
 
-            builder.Services.AddDbContext<UserDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("UserDbConnection")));
-
             builder.Services.AddDbContext<TaskManagerDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("TaskManagerDbConnection")));
+                options.UseNpgsql(configuration.GetConnectionString("TaskManagerDbConnection"))
+                       .UseLazyLoadingProxies()); // Enable lazy loading proxies
 
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<ProfileRepository>();
-            builder.Services.AddScoped<MemberRepository>();
-            builder.Services.AddScoped<TeamRepository>();
-            builder.Services.AddScoped<ProjectRepository>();
-            builder.Services.AddScoped<PlanRepository>();
-            builder.Services.AddScoped<TaskFromPlanRepository>();
-            builder.Services.AddScoped<NotificationRepository>();
-            builder.Services.AddScoped<AttachmentRepository>();
 
             builder.Services.AddScoped<AuthService>();
             builder.Services.AddScoped<UserManagementService>();

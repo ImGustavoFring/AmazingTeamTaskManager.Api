@@ -1,4 +1,4 @@
-﻿using AmazingTeamTaskManager.Core.Services.UserServices;
+﻿using AmazingTeamTaskManager.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
